@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h2 class="h2">Blog details</h2>
+  <a routerLink="/view-blogs" class="btn btn-success">
+    Blogs list
+  </a>
+</div>
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+     <div class="card-body">
+      <h1>
+        {{blog.title}}
+      </h1>
+  
+      <p class="card-text" style="font-size: 30px;">{{blog.content}}
+      </p>
+  
+      <p style="color: grey; text-align: center;" class="post-meta"><i>Posted by </i>
+        <i><a href="#" style="color: grey; text-decoration: none;"></a>{{blog.author}}</i>
+      </p>
+      <hr>
+ 
+    </div>
+  </div>
+</div>

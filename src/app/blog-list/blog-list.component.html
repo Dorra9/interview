@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Blogs List</h2>
+    <a routerLink="/add-blog" class="btn btn-success" *ngIf="hideWhenNoBlog">
+      Add Blog
+    </a>
+  </div>
+  
+  <div class="pricing-header mx-auto">
+  
+    <div class="no-data text-center" *ngIf="noData">
+      <p class="nodata-msg">No blog added yet!</p>
+      <a routerLink="/add-blog" class="btn btn-success">
+        Add Blog
+      </a>
+    </div>
+
+      <nav class="navbar">
+        <input type="text" id="icon" class="mynavbar form-control" name="nameblog" [(ngModel)]="nameblog" (ngModelChange)="Search()"
+          placeholder="Enter blog name to search" style="height: 40px; width: 570px;" >
+      </nav> <br>
+
+
+      <div class="row" *ngFor="let post of Blog">
+
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="card-body" [ngClass]="{'list-group-item': true, 'list-group-item-success': post.upvote>post.downvote, 'list-group-item-danger': post.downvote>post.upvote}">
+          <h1 [textContent]="post.title"></h1>
+      
+          <h3 class="card-text">
+            {{ post.content.length > 48 ? post.content.substring(0, 50)+"..." : post.content }}
+            <a routerLink="/view-blog/{{post.$key}}" *ngIf="post.content.length > 48"><p style="font-size: 15px;">Continue reading</p> </a>
+          </h3>
+      
+          <p style="color: grey; text-align: center;" class="post-meta"><i>Posted by </i>
+            <i><a href="#" style="color: grey; text-decoration: none;" [textContent]="post.author"></a></i>
+          </p>
+          <hr>
+          <button type="button" class="btn btn-success" (click)= "upvoteBlog(post)">UpVote</button> &nbsp; &nbsp; <button type="button">{{post.upvote}}</button> &nbsp; &nbsp;
+          <button type="button" class="btn btn-danger" (click)="downvoteBlog(post)" >DownVote</button> &nbsp; &nbsp;
+           <button type="button"> {{post.downvote}}</button>
+           <br> <br>
+           <center>
+          <span class="btn btn-outline-danger btn-sm" (click)="deleteBlog(post)">Delete</span>
+        </center>
+        
+        </div>
+        <br>
+        </div>
+  
+      </div>
+
+</div>
+
+
+
+

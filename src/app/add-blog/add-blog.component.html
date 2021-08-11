@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Add Blog</h2>
+    <a routerLink="/view-blogs" class="btn btn-success">
+      Blogs list
+    </a>
+  </div>
+  
+  <form [formGroup]="blogForm" (ngSubmit)="submitBlogData()">
+    <div class="row">
+      <div class="col-lg-5 col-md-12 col-sm-12">
+        <div class="row">
+  
+          <div class="col-md-12 mb-3">
+            <label>Title</label>
+            <input type="text" formControlName="title" class="form-control" required>
+  
+            <!-- errors-->
+            <p *ngIf="title.touched && title.invalid" class="error"><sup>*</sup>Please enter the blog title
+            </p>
+            <p *ngIf="title.errors?.minlength" class="error"><sup>*</sup>Title shouldn't be less than 2 letters</p>
+          </div>
+  
+        </div>
+
+     <div class="row">
+        <div class="col-md-12 mb-3">
+            <label>Content</label>
+            <textarea name="content"
+            rows="5" cols="33" formControlName="content" class="form-control" required>
+            </textarea>
+  
+            <!-- errors-->
+            <p *ngIf="content.touched && content.invalid" class="error"><sup>*</sup>Please enter the blog content
+            </p>
+            <p *ngIf="content.errors?.minlength" class="error"><sup>*</sup>Content shouldn't be less than 10 letters</p>
+          </div>
+     </div>
+
+        <div class="row">
+       
+            <div class="col-md-12 mb-3">
+                <label>Author</label>
+                <input type="text" formControlName="author" class="form-control" required>
+      
+                <!-- errors-->
+                <p *ngIf="author.touched && author.invalid" class="error"><sup>*</sup>Please enter the blog author
+                </p>
+              </div>
+  
+        </div>
+  
+        <div class="form-group text-right">
+          <button type="button" class="btn btn-secondary gap-right" (click)="ResetForm()">Reset</button> &nbsp; &nbsp;
+          <button type="submit" class="btn btn-success" [disabled]="!blogForm.valid">Add Blog</button>  
+        </div>
+  
+      </div>
+    </div>
+  </form>
